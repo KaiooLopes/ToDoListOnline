@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Columns from "./Components/Columns/Columns";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App-main">
+      <h1>Kanban</h1>
+      <div className="App-main-columns">
+        <Columns
+          card1={{ cardTitle: "Christmas Banner", label: "Label" }}
+          card2={{ cardTitle: "Redo Portifolio", label: "Label" }}>
+          🗒️ To do
+        </Columns>
+      </div>
     </div>
   );
 }
