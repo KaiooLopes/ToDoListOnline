@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ContainerAbout = styled.div`
   display: flex;
   justify-content: center;
+  max-width: 800px;
   align-items: center;
   flex-direction: column;
   width: 80%;
@@ -33,6 +34,7 @@ export const IconsTools = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  max-width: 600px;
   justify-content: space-evenly;
   i {
     font-size: 40px;
