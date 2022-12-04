@@ -1,6 +1,4 @@
-import { useState } from "react";
-import { useUpdateDocument } from "../../../../hooks/useUpdateDocument";
-import { useDeleteDocument } from "../../../../hooks/useDeleteDocument";
+//STYLES
 import {
   Card,
   Date,
@@ -11,6 +9,11 @@ import {
   ButtonRemove,
   ConfirmRemove,
 } from "./styles";
+
+//HOOKS
+import { useState } from "react";
+import { useUpdateDocument } from "../../../../hooks/useUpdateDocument";
+import { useDeleteDocument } from "../../../../hooks/useDeleteDocument";
 
 function Cards({
   date,

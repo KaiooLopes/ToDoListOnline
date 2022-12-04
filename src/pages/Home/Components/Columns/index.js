@@ -1,8 +1,4 @@
-import { useEffect, useState } from "react";
-import { useInsertDocuments } from "../../../../hooks/useInsertDocuments";
-import { useFetchDocuments } from "../../../../hooks/useFetchDocuments";
-import { useDeleteDocument } from "../../../../hooks/useDeleteDocument";
-import Cards from "../Cards";
+//STYLES
 import {
   Help,
   Date,
@@ -17,7 +13,16 @@ import {
   CardContent,
 } from "./styles";
 
-function Columns({ children, color, columns, columnIndex, removingColumn }) {
+//HOOKS
+import { useState } from "react";
+import { useInsertDocuments } from "../../../../hooks/useInsertDocuments";
+import { useFetchDocuments } from "../../../../hooks/useFetchDocuments";
+import { useDeleteDocument } from "../../../../hooks/useDeleteDocument";
+
+//COMPONENTS
+import Cards from "../Cards";
+
+function Columns({ children, color, columnsId, removingColumn }) {
   const [titleCard, setTitleCard] = useState("");
   const [bodyCard, setBodyCard] = useState("");
   const [creating, setCreating] = useState(false);
@@ -25,14 +30,11 @@ function Columns({ children, color, columns, columnIndex, removingColumn }) {
   const [progress] = useState("dont started");
   const [date, setDate] = useState("");
   const [hour, setHour] = useState("");
-  const { deleteDocument } = useDeleteDocument(`columns`);
-  const { documents } = useFetchDocuments(
-    `columns/${columns[columnIndex].id}/cards`
-  );
 
-  const { insertDocument } = useInsertDocuments(
-    `columns/${columns[columnIndex].id}/cards`
-  );
+  const { deleteDocument } = useDeleteDocument(`columns`);
+  const { documents } = useFetchDocuments(`columns/${columnsId}/cards`);
+
+  const { insertDocument } = useInsertDocuments(`columns/${columnsId}/cards`);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,7 +64,7 @@ function Columns({ children, color, columns, columnIndex, removingColumn }) {
   };
 
   const handleRemove = () => {
-    deleteDocument(`${columns[columnIndex].id}`);
+    deleteDocument(`${columnsId}`);
   };
 
   return (
@@ -157,6 +159,7 @@ function Columns({ children, color, columns, columnIndex, removingColumn }) {
         documents.map((card, i) => {
           return (
             <Cards
+              key={i}
               color={color}
               date={card.date}
               id={card.id}
@@ -164,8 +167,7 @@ function Columns({ children, color, columns, columnIndex, removingColumn }) {
               body={card.bodyCard}
               cardTitle={card.titleCard}
               progress={card.progress}
-              key={i}
-              columnIndex={columns[columnIndex].id}
+              columnIndex={columnsId}
               createdAt={card.createdAt}
             />
           );

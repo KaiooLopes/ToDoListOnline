@@ -1,3 +1,4 @@
+//STYLES
 import {
   ContainerHome,
   HomeColumns,
@@ -8,28 +9,30 @@ import {
   Colors,
   Color,
 } from "./styles";
-import { useEffect, useState } from "react";
-import Columns from "./Components/Columns";
-import { useFetchDocuments } from "../../hooks/useFetchDocuments";
+
+//CONTEXT
 import { useAuthValue } from "../../context/AuthContext";
+
+//HOOKS
+import { useState } from "react";
+import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
-import { RemoveColumn } from "./Components/Columns/styles";
-import { useRef } from "react";
+
+//COMPONENTS
+import Columns from "./Components/Columns";
 
 const Home = () => {
-  const [idColor, setIdColor] = useState(null);
-  const ref = useRef(null);
-  const [creating, setCreating] = useState(false);
-  const [nameColumn, setNameColumn] = useState("");
-  const [removingColumn, setRemovingColumn] = useState(false);
   const { user } = useAuthValue();
-  const { insertDocument, response } = useInsertDocuments("columns");
-  const {
-    documents: columns,
-    loading,
-    error,
-  } = useFetchDocuments("columns", user.uid);
 
+  const [idColor, setIdColor] = useState(null);
+
+  const [creating, setCreating] = useState(false);
+  const [removingColumn, setRemovingColumn] = useState(false);
+
+  const { insertDocument } = useInsertDocuments("columns");
+  const { documents: columns } = useFetchDocuments("columns", user.uid);
+
+  const [nameColumn, setNameColumn] = useState("");
   const [color, setColor] = useState("");
 
   const handleSubmit = async (e) => {
@@ -126,7 +129,7 @@ const Home = () => {
           Remove Column
         </RemoveColumnBtn>
       </Buttons>
-      <HomeColumns ref={ref}>
+      <HomeColumns>
         {columns &&
           columns.map((column, i) => {
             return (
@@ -134,8 +137,7 @@ const Home = () => {
                 removingColumn={removingColumn}
                 key={i}
                 color={column.color}
-                columns={columns}
-                columnIndex={i}
+                columnsId={columns[i].id}
               >
                 {column.nameColumn}
               </Columns>

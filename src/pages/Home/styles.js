@@ -103,14 +103,10 @@ export const Color = styled.span`
 
 export const HomeColumns = styled.div`
   display: flex;
+  flex-direction: column;
   padding-top: 20px;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 auto;
-  width: 80%;
-  column-gap: 20px;
   row-gap: 20px;
+  align-items: center;
 `;
 
 export const Buttons = styled.div`

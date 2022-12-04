@@ -1,15 +1,13 @@
 import styled from "styled-components";
 
 export const ContainerColumns = styled.div`
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
   background-color: ${(props) => props.color};
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
   padding-bottom: 20px;
   padding: 15px 10px;
-  height: 100%;
+  align-items: center;
   position: relative;
 `;
 
@@ -18,7 +16,6 @@ export const RemoveColumn = styled.div`
     props.removingColumn
       ? "opacity:1;visibility:visible;"
       : "opacity:0;visibility:hidden;"}
-  transition: 0.4s;
   position: absolute;
   z-index: 1;
   top: 0;
