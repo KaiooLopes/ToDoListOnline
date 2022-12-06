@@ -32,6 +32,9 @@ function Columns({ children, color, columnsId, removingColumn }) {
   const [hour, setHour] = useState("");
 
   const { deleteDocument } = useDeleteDocument(`columns`);
+  const { deleteDocument: deleteDocumentCard } = useDeleteDocument(
+    `columns/${columnsId}/cards`
+  );
   const { documents } = useFetchDocuments(`columns/${columnsId}/cards`);
 
   const { insertDocument } = useInsertDocuments(`columns/${columnsId}/cards`);
@@ -64,7 +67,10 @@ function Columns({ children, color, columnsId, removingColumn }) {
   };
 
   const handleRemove = () => {
-    deleteDocument(`${columnsId}`);
+    deleteDocument(columnsId);
+    documents.map((card) => {
+      deleteDocumentCard(card.id);
+    });
   };
 
   return (
