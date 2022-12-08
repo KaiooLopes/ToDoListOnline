@@ -12,8 +12,8 @@ import {
 
 //HOOKS
 import { useState } from "react";
-import { useUpdateDocument } from "../../../../hooks/useUpdateDocument";
-import { useDeleteDocument } from "../../../../hooks/useDeleteDocument";
+import { useUpdateDocument } from "../../hooks/useUpdateDocument";
+import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 
 function Cards({
   date,
@@ -26,8 +26,6 @@ function Cards({
   columnIndex,
   createdAt,
 }) {
-  const { deleteDocument } = useDeleteDocument(`columns/${columnIndex}/cards`);
-  const [confirmRemove, setConfirmRemove] = useState();
   const { updateDocument } = useUpdateDocument(`columns/${columnIndex}/cards`);
 
   const handleProgress = (progress) => {
@@ -50,11 +48,6 @@ function Cards({
     });
   };
 
-  const handleRemove = () => {
-    deleteDocument(id);
-    setConfirmRemove(false);
-  };
-
   return (
     <Card>
       <CardHeader>
@@ -64,9 +57,6 @@ function Cards({
           </Completed>
           <h3>{cardTitle}</h3>
         </TitleAndCheck>
-        <ButtonRemove>
-          <button onClick={() => setConfirmRemove(true)}>X</button>
-        </ButtonRemove>
       </CardHeader>
       <CardBody color={color}>
         <p>{body}</p>
@@ -75,13 +65,6 @@ function Cards({
         <p>{date}</p>
         <p>{hour}</p>
       </Date>
-      <ConfirmRemove confirmRemove={confirmRemove}>
-        <p>Você deseja mesma excluir?</p>
-        <div>
-          <button onClick={() => handleRemove()}>Sim</button>
-          <button onClick={() => setConfirmRemove(false)}>Não</button>
-        </div>
-      </ConfirmRemove>
     </Card>
   );
 }

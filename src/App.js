@@ -12,6 +12,8 @@ import About from "./pages/About";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import background from "./background.png";
+import CreateColumn from "./pages/CreateColumn";
+import Column from "./pages/Column";
 
 const GlobalStyle = createGlobalStyle`
 
@@ -63,6 +65,8 @@ function App() {
               element={!user ? <Register /> : <Navigate to="/" />}
             />
             <Route path="/about" element={<About />} />
+            <Route path="/card/create" element={<CreateColumn />} />
+            <Route path="/card/:id" element={<Column />} />
           </Routes>
           {/*           <Footer /> */}
         </BrowserRouter>

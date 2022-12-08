@@ -33,22 +33,6 @@ export const TitleAndCheck = styled.div`
   }
 `;
 
-export const ButtonRemove = styled.div`
-  button {
-    background-color: #eb4a4a;
-    border: none;
-    padding: 3px 8px;
-    border-radius: 5px;
-    color: white;
-    transition: 0.4s;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #ed1414;
-    }
-  }
-`;
-
 export const Date = styled.div`
   display: flex;
   column-gap: 0.2em;
@@ -84,59 +68,5 @@ export const CardBody = styled.div`
   p {
     text-align: center;
     word-wrap: break-word;
-  }
-`;
-
-export const ConfirmRemove = styled.div`
-  ${(props) =>
-    props.confirmRemove
-      ? "opacity:1;visibility:visible;"
-      : "opacity:0;visibility:hidden;"}
-
-  background-color: rgba(10, 10, 10, 0.9);
-  transition: 0.4s;
-  z-index: 1;
-  position: absolute;
-  left: 0;
-  top: 0;
-  border-radius: 8px;
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  row-gap: 20px;
-
-  p {
-    color: white;
-  }
-
-  div {
-    display: flex;
-    column-gap: 10px;
-    justify-content: center;
-  }
-
-  button {
-    border: none;
-    padding: 5px 12px;
-    border-radius: 10px;
-    transition: 0.4s;
-    cursor: pointer;
-    color: white;
-
-    &:nth-child(1) {
-      background-color: #b43b3b;
-    }
-
-    &:nth-child(2) {
-      background-color: #3db037;
-    }
-
-    &:hover {
-      background-color: #424242;
-    }
   }
 `;
