@@ -1,8 +1,10 @@
 import { ContainerAbout, IconsTools } from "./styles";
+import ButtonBack from "../../components/ButtonBack";
 
 const About = () => {
   return (
     <ContainerAbout>
+      <ButtonBack />
       <h1>To Do List</h1>
       <p>
         Neste site, você pode armazenar suas tarefas e usar de qualquer lugar

@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
 export const ContainerHome = styled.div`
-  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 43px;
+  width: 90%;
+  margin: 0 auto;
 
   h1 {
     margin: 30px auto 0;
@@ -18,9 +19,22 @@ export const ContainerHome = styled.div`
 export const HomeColumns = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   padding-top: 20px;
   row-gap: 20px;
   align-items: center;
+`;
+
+export const DivClick = styled.div`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  transition: 0.4s;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const Buttons = styled.div`
@@ -43,19 +57,11 @@ export const Buttons = styled.div`
     cursor: pointer;
     width: 120px;
     transition: 0.4s;
+    background-color: rgb(0, 100, 100);
+    color: white;
   }
 
   button:hover {
     background-color: rgb(0, 0, 0);
   }
-  button:disabled {
-    background-color: #cccccc;
-    color: #666666;
-    cursor: default;
-  }
-`;
-
-export const AddColumnBtn = styled.button`
-  background-color: rgb(0, 100, 100);
-  color: white;
 `;

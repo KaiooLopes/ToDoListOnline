@@ -1,5 +1,11 @@
 //STYLES
-import { ContainerHome, HomeColumns, AddColumnBtn, Buttons } from "./styles";
+import {
+  ContainerHome,
+  HomeColumns,
+  AddColumnBtn,
+  Buttons,
+  DivClick,
+} from "./styles";
 
 //CONTEXT
 import { useAuthValue } from "../../context/AuthContext";
@@ -25,18 +31,21 @@ const Home = () => {
     <ContainerHome>
       <h1>To Do List</h1>
       <Buttons>
-        <AddColumnBtn onClick={() => handleCreate()}>Add Column</AddColumnBtn>
+        <button onClick={() => handleCreate()}>Add Column</button>
       </Buttons>
       <HomeColumns>
         {columns &&
           columns.map((column, i) => {
             return (
-              <>
-                <Link to={`card/${column.id}`}>ver Mais</Link>
-                <Columns key={i} color={column.color} columnsId={columns[i].id}>
+              <DivClick onClick={() => navigate(`card/${column.id}`)} key={i}>
+                <Columns
+                  color={column.color}
+                  idColumn={columns[i].id}
+                  home={true}
+                >
                   {column.nameColumn}
                 </Columns>
-              </>
+              </DivClick>
             );
           })}
       </HomeColumns>

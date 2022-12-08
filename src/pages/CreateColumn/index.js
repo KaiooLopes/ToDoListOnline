@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 import { useAuthValue } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import ButtonBack from "../../components/ButtonBack";
 
 const CreateColumn = () => {
   const { user } = useAuthValue();
@@ -36,6 +37,7 @@ const CreateColumn = () => {
 
   return (
     <CreateColumnContainer>
+      <ButtonBack />
       <ColumnForm>
         <form onSubmit={handleSubmit}>
           <label>

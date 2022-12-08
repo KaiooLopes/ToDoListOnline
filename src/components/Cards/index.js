@@ -11,11 +11,11 @@ import {
 } from "./styles";
 
 //HOOKS
-import { useState } from "react";
 import { useUpdateDocument } from "../../hooks/useUpdateDocument";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 
 function Cards({
+  home,
   date,
   hour,
   cardTitle,
@@ -27,8 +27,12 @@ function Cards({
   createdAt,
 }) {
   const { updateDocument } = useUpdateDocument(`columns/${columnIndex}/cards`);
+  const { deleteDocument } = useDeleteDocument(`columns/${columnIndex}/cards`);
 
   const handleProgress = (progress) => {
+    if (home) {
+      return;
+    }
     let statusCard = progress;
     if (progress === "dont started") {
       statusCard = "in progress";
@@ -57,6 +61,7 @@ function Cards({
           </Completed>
           <h3>{cardTitle}</h3>
         </TitleAndCheck>
+        {!home && <button onClick={() => deleteDocument(id)}>X</button>}
       </CardHeader>
       <CardBody color={color}>
         <p>{body}</p>

@@ -26,7 +26,7 @@ export const useFetchDocuments = (doc, uid = null) => {
       try {
         let q;
         if (uid === null) {
-          q = await query(collectionRef);
+          q = await query(collectionRef, orderBy("createdAt", "asc"));
         } else {
           q = await query(
             collectionRef,

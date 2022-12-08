@@ -1,16 +1,58 @@
 import { useParams } from "react-router-dom";
 import { useFetchDocument } from "../../hooks/useFetchDocument";
 import Columns from "../../components/Columns";
-import { AddCard, ColumnContainer, CreatingToDo } from "./styles";
+import {
+  AddCard,
+  ColumnContainer,
+  CreatingToDo,
+  CardContent,
+  CardInputs,
+  Date,
+  ShowHelp,
+  CreateCard,
+  DivColumn,
+  RemoveCard,
+} from "./styles";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useInsertDocuments } from "../../hooks/useInsertDocuments";
+import { useDeleteDocument } from "../../hooks/useDeleteDocument";
+import ButtonBack from "../../components/ButtonBack";
 
 const Column = () => {
   const id = useParams();
+  const navigate = useNavigate();
   const [creating, setCreating] = useState(false);
   const { document } = useFetchDocument("columns", id.id);
+  const { insertDocument } = useInsertDocuments(`columns/${id.id}/cards`);
+  const { deleteDocument } = useDeleteDocument(`columns`);
+
+  const [titleToDo, setTitleToDo] = useState("");
+  const [help, setHelp] = useState("");
+  const [date, setDate] = useState("");
+  const [toDoBody, setToDoBody] = useState("");
+  const [hour, setHour] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await insertDocument({
+      date,
+      progress: "dont started",
+      hour,
+      bodyCard: toDoBody,
+      titleCard: titleToDo,
+    });
+  };
+
+  const removeColumn = async (e) => {
+    e.preventDefault();
+    await deleteDocument(id.id);
+    navigate("/");
+  };
 
   return (
     <ColumnContainer>
+      <ButtonBack />
       <AddCard
         onClick={() => {
           setCreating(true);
@@ -18,12 +60,15 @@ const Column = () => {
       >
         Add Card
       </AddCard>
+      <RemoveCard onClick={(e) => removeColumn(e)}>Remove Card</RemoveCard>
       {document && (
-        <Columns
-          idColumn={id.id}
-          color={document.color}
-          children={document.nameColumn}
-        ></Columns>
+        <DivColumn>
+          <Columns
+            idColumn={id.id}
+            color={document.color}
+            children={document.nameColumn}
+          ></Columns>
+        </DivColumn>
       )}
       {creating && (
         <CreatingToDo>
@@ -35,8 +80,8 @@ const Column = () => {
                   required
                   name="title"
                   placeholder="Card Title"
-                  value={titleCard}
-                  onChange={(e) => setTitleCard(e.target.value)}
+                  value={titleToDo}
+                  onChange={(e) => setTitleToDo(e.target.value)}
                 />
               </label>
               <label>
@@ -44,9 +89,9 @@ const Column = () => {
                   type="textarea"
                   required
                   name="body"
-                  value={bodyCard}
+                  value={toDoBody}
                   placeholder="Card Body"
-                  onChange={(e) => setBodyCard(e.target.value)}
+                  onChange={(e) => setToDoBody(e.target.value)}
                 />
               </label>
             </CardInputs>
@@ -65,7 +110,7 @@ const Column = () => {
               />
             </Date>
 
-            <ShowHelp help={help}>
+            <ShowHelp help={help} onClick={() => setHelp(!help)}>
               <p>
                 <span></span> nao iniciado
               </p>

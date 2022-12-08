@@ -9,6 +9,7 @@ export const ContainerAbout = styled.div`
   width: 80%;
   margin: 20px auto 0;
   row-gap: 15px;
+  position: relative;
 
   * {
     margin: 10px;

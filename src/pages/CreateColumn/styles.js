@@ -2,19 +2,22 @@ import styled from "styled-components";
 
 export const CreateColumnContainer = styled.div`
   display: flex;
-  background-color: rgba(12, 23, 70, 0.9);
   justify-content: center;
-  width: 50%;
-  margin: 0 auto;
-  border-radius: 10px;
-  margin-top: 17%;
-  padding: 30px 20px 20px;
+  align-items: center;
+  height: 90vh;
+  position: relative;
 `;
 
 export const ColumnForm = styled.div`
+  background-color: rgba(12, 23, 70, 1);
   display: flex;
-  max-width: 500px;
+  border-radius: 20px;
+  max-width: 400px;
+  border: 6px solid black;
+  padding: 10px 0;
+  width: 90%;
   justify-content: center;
+  align-items: center;
   form {
     width: 70%;
     * {
@@ -30,9 +33,11 @@ export const ColumnForm = styled.div`
       width: 100px;
       padding: 5px;
       border-radius: 10px;
+      border: none;
       cursor: pointer;
       transition: 0.4s;
       background-color: green;
+      margin: 0;
     }
 
     button:hover {
