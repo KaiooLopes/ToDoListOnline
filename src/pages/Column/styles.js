@@ -27,6 +27,71 @@ export const AddCard = styled.button`
   }
 `;
 
+export const ConfirmRemove = styled.div`
+  background-color: rgba(119, 119, 119, 1);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  transition: 0.3s;
+  width: 80%;
+  max-width: 400px;
+  position: absolute;
+  left: auto;
+  row-gap: 15px;
+  right: auto;
+  top: 40vh;
+  padding: 15px 0;
+  z-index: 1;
+
+  ${(props) =>
+    props.confirmRemove
+      ? "transform: translateY(0);opacity: 1;  visibility: visible; "
+      : "transform: translateY(-200px);opacity: 0;  visibility: hidden; "}
+`;
+
+export const ConfirmText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+
+  h3 {
+    font-weight: normal;
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 15px;
+    color: #bd0c0c;
+    font-weight: bold;
+  }
+`;
+export const Btns = styled.div`
+  button {
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 6px 12px;
+    margin: 0 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:nth-child(1) {
+      color: #e32d2d;
+    }
+
+    &:nth-child(2) {
+      color: #aeaeae;
+    }
+  }
+`;
+
 export const RemoveCard = styled.button`
   color: white;
   border: none;
@@ -44,7 +109,25 @@ export const RemoveCard = styled.button`
     background-color: rgb(0, 0, 0);
   }
 `;
-export const CreatingToDo = styled.div``;
+export const CreatingToDo = styled.div`
+  background-color: rgba(119, 119, 119, 1);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  transition: 0.3s;
+  width: 80%;
+  max-width: 400px;
+  position: absolute;
+  left: auto;
+  right: auto;
+  top: 40vh;
+  z-index: 1;
+
+  ${(props) =>
+    props.creating
+      ? "transform: translateY(0);opacity: 1;  visibility: visible; "
+      : "transform: translateY(-200px);opacity: 0;  visibility: hidden; "}
+`;
 
 export const CardContent = styled.form`
   width: 90%;
@@ -88,7 +171,7 @@ export const CardInputs = styled.div`
 export const DivColumn = styled.div`
   display: flex;
   justify-content: center;
-  width: 100%;
+  width: 90%;
   max-width: 400px;
   transition: 0.4s;
 `;
@@ -207,15 +290,23 @@ export const CreateCard = styled.div`
 
   button {
     background-color: rgba(0, 0, 0, 0.5);
-    color: #30ff00;
+
     padding: 5px;
     cursor: pointer;
     border-radius: 5px;
     border: 0;
     transition: 0.4s;
+    margin: 0 5px;
 
     &:hover {
       transform: scale(1.1);
     }
+  }
+
+  button:nth-child(1) {
+    color: #30ff00;
+  }
+  button:nth-child(2) {
+    color: #eb3f3f;
   }
 `;

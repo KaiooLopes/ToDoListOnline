@@ -19,6 +19,15 @@ export const CardHeader = styled.div`
   align-items: center;
   column-gap: 10px;
   align-items: center;
+
+  button {
+    border: none;
+    background-color: red;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 18px;
+    color: white;
+  }
 `;
 
 export const TitleAndCheck = styled.div`

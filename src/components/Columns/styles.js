@@ -20,6 +20,9 @@ export const ColumnHeader = styled.div`
   width: 90%;
   column-gap: 10px;
 
+  ${(props) =>
+    props.home ? "justify-content: space-between;" : "justify-content: center;"}
+
   button {
     background-color: transparent;
     ${(props) =>
@@ -29,6 +32,11 @@ export const ColumnHeader = styled.div`
     font-size: 18px;
     cursor: pointer;
     transition: 0.4s;
+  }
+
+  i:last-child {
+    font-size: 18px;
+    color: white;
   }
 `;
 
@@ -40,8 +48,10 @@ export const Title = styled.div`
   padding: 0;
   max-width: 85%;
   overflow: hidden;
-  i {
+  i,
+  i:last-child {
     font-size: 8px;
+    color: white;
   }
   h4 {
     color: white;

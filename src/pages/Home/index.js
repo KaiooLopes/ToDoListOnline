@@ -1,18 +1,11 @@
 //STYLES
-import {
-  ContainerHome,
-  HomeColumns,
-  AddColumnBtn,
-  Buttons,
-  DivClick,
-} from "./styles";
+import { ContainerHome, HomeColumns, Buttons, DivClick } from "./styles";
 
 //CONTEXT
 import { useAuthValue } from "../../context/AuthContext";
 
 //HOOKS
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
-import { Link } from "react-router-dom";
 
 //COMPONENTS
 import Columns from "../../components/Columns";

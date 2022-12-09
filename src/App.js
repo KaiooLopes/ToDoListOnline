@@ -15,8 +15,9 @@ import background from "./background.png";
 import CreateColumn from "./pages/CreateColumn";
 import Column from "./pages/Column";
 
-const GlobalStyle = createGlobalStyle`
+const desktop = 994;
 
+const GlobalStyle = createGlobalStyle`
   body{
     margin: 0;
     height: 100vh;
@@ -24,6 +25,11 @@ const GlobalStyle = createGlobalStyle`
     background-position: center;
     background-repeat: repeat-y;
     background-size: cover;
+    margin: 0 auto;
+
+    @media (min-width: ${desktop}px){
+      width: 70%;
+    }
   }
   
 
@@ -65,10 +71,16 @@ function App() {
               element={!user ? <Register /> : <Navigate to="/" />}
             />
             <Route path="/about" element={<About />} />
-            <Route path="/card/create" element={<CreateColumn />} />
-            <Route path="/card/:id" element={<Column />} />
+            <Route
+              path="/card/create"
+              element={user ? <CreateColumn /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/card/:id"
+              element={user ? <Column /> : <Navigate to="/" />}
+            />
           </Routes>
-          {/*           <Footer /> */}
+          <Footer />
         </BrowserRouter>
       </AuthProvider>
     </>

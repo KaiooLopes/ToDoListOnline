@@ -8,10 +8,12 @@ import {
   CardContent,
   CardInputs,
   Date,
-  ShowHelp,
   CreateCard,
   DivColumn,
   RemoveCard,
+  ConfirmRemove,
+  ConfirmText,
+  Btns,
 } from "./styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -23,15 +25,22 @@ const Column = () => {
   const id = useParams();
   const navigate = useNavigate();
   const [creating, setCreating] = useState(false);
+  const [confirmRemove, setConfirmRemove] = useState(false);
   const { document } = useFetchDocument("columns", id.id);
   const { insertDocument } = useInsertDocuments(`columns/${id.id}/cards`);
   const { deleteDocument } = useDeleteDocument(`columns`);
 
   const [titleToDo, setTitleToDo] = useState("");
-  const [help, setHelp] = useState("");
   const [date, setDate] = useState("");
   const [toDoBody, setToDoBody] = useState("");
   const [hour, setHour] = useState("");
+
+  const reset = () => {
+    setTitleToDo("");
+    setDate("");
+    setToDoBody("");
+    setHour("");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,6 +51,8 @@ const Column = () => {
       bodyCard: toDoBody,
       titleCard: titleToDo,
     });
+    setCreating(false);
+    reset();
   };
 
   const removeColumn = async (e) => {
@@ -55,12 +66,34 @@ const Column = () => {
       <ButtonBack />
       <AddCard
         onClick={() => {
+          if (confirmRemove) {
+            return;
+          }
           setCreating(true);
         }}
       >
         Add Card
       </AddCard>
-      <RemoveCard onClick={(e) => removeColumn(e)}>Remove Card</RemoveCard>
+      <RemoveCard
+        onClick={(e) => {
+          if (creating) {
+            return;
+          }
+          setConfirmRemove(true);
+        }}
+      >
+        Remove Column
+      </RemoveCard>
+      <ConfirmRemove confirmRemove={confirmRemove}>
+        <ConfirmText>
+          <h3>Tem certeza que deseja excluir</h3>
+          <p>Isto apagará todos seus cards desta coluna</p>
+        </ConfirmText>
+        <Btns>
+          <button onClick={(e) => removeColumn(e)}>Sim</button>
+          <button onClick={() => setConfirmRemove(false)}>Não</button>
+        </Btns>
+      </ConfirmRemove>
       {document && (
         <DivColumn>
           <Columns
@@ -70,64 +103,58 @@ const Column = () => {
           ></Columns>
         </DivColumn>
       )}
-      {creating && (
-        <CreatingToDo>
-          <CardContent onSubmit={handleSubmit}>
-            <CardInputs>
-              <label>
-                <input
-                  type="text"
-                  required
-                  name="title"
-                  placeholder="Card Title"
-                  value={titleToDo}
-                  onChange={(e) => setTitleToDo(e.target.value)}
-                />
-              </label>
-              <label>
-                <input
-                  type="textarea"
-                  required
-                  name="body"
-                  value={toDoBody}
-                  placeholder="Card Body"
-                  onChange={(e) => setToDoBody(e.target.value)}
-                />
-              </label>
-            </CardInputs>
-            <Date>
+      <CreatingToDo creating={creating}>
+        <CardContent onSubmit={handleSubmit}>
+          <CardInputs>
+            <label>
               <input
-                type="date"
+                type="text"
                 required
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
+                name="title"
+                placeholder="Card Title"
+                value={titleToDo}
+                onChange={(e) => setTitleToDo(e.target.value)}
               />
+            </label>
+            <label>
               <input
-                type="time"
+                type="textarea"
                 required
-                value={hour}
-                onChange={(e) => setHour(e.target.value)}
+                name="body"
+                value={toDoBody}
+                placeholder="Card Body"
+                onChange={(e) => setToDoBody(e.target.value)}
               />
-            </Date>
-
-            <ShowHelp help={help} onClick={() => setHelp(!help)}>
-              <p>
-                <span></span> nao iniciado
-              </p>
-              <p>
-                <span></span> em andamento
-              </p>
-              <p>
-                <span></span> concluido
-              </p>
-              <div></div>
-            </ShowHelp>
-            <CreateCard>
-              <button>Create</button>
-            </CreateCard>
-          </CardContent>
-        </CreatingToDo>
-      )}
+            </label>
+          </CardInputs>
+          <Date>
+            <input
+              type="date"
+              required
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+            />
+            <input
+              type="time"
+              required
+              value={hour}
+              onChange={(e) => setHour(e.target.value)}
+            />
+          </Date>
+          <CreateCard>
+            <button>Create</button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                setCreating(false);
+                reset();
+              }}
+            >
+              Cancel
+            </button>
+          </CreateCard>
+        </CardContent>
+      </CreatingToDo>
     </ColumnContainer>
   );
 };

@@ -6,8 +6,6 @@ import {
   CardBody,
   Completed,
   TitleAndCheck,
-  ButtonRemove,
-  ConfirmRemove,
 } from "./styles";
 
 //HOOKS

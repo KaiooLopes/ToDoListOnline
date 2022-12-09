@@ -11,11 +11,13 @@ function Columns({ children, color, idColumn, home = null }) {
   const { documents } = useFetchDocuments(`columns/${idColumn}/cards`);
   return (
     <ContainerColumns color={color}>
-      <ColumnHeader>
+      <ColumnHeader home={home}>
         <Title>
-          <i className="fa-solid fa-circle"></i>
+          {<i className="fa-solid fa-circle"></i>}
           <h4>{children}</h4>
+          {!home && <i className="fa-solid fa-circle"></i>}
         </Title>
+        {home && <i className="fa-regular fa-hand-pointer"></i>}
       </ColumnHeader>
       {documents && documents.length > 0 && home && (
         <Cards

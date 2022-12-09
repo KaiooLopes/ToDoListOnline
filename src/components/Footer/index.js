@@ -1,7 +1,7 @@
 import { ContainerFooter } from "./styles";
 
 const Footer = () => {
-  return <ContainerFooter color="blue">Footer</ContainerFooter>;
+  return <ContainerFooter>Footer</ContainerFooter>;
 };
 
 export default Footer;
