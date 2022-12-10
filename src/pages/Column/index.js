@@ -86,12 +86,12 @@ const Column = () => {
       </RemoveCard>
       <ConfirmRemove confirmRemove={confirmRemove}>
         <ConfirmText>
-          <h3>Tem certeza que deseja excluir</h3>
-          <p>Isto apagará todos seus cards desta coluna</p>
+          <h3>Are you sure you want to delete?</h3>
+          <p>This will clear all your cards from this column.</p>
         </ConfirmText>
         <Btns>
-          <button onClick={(e) => removeColumn(e)}>Sim</button>
-          <button onClick={() => setConfirmRemove(false)}>Não</button>
+          <button onClick={(e) => removeColumn(e)}>Yes</button>
+          <button onClick={() => setConfirmRemove(false)}>No</button>
         </Btns>
       </ConfirmRemove>
       {document && (

@@ -7,12 +7,12 @@ const About = () => {
       <ButtonBack />
       <h1>To Do List</h1>
       <p>
-        Neste site, você pode armazenar suas tarefas e usar de qualquer lugar
-        atraves de seu login
+        On this site, you can store your tasks and use them from anywhere
+        through your login.
       </p>
       <p>
-        Fiz este site para colocar em meu portfólio e praticar minhas
-        habilidades com as ferramentas que uso!
+        I made this site to put in my portfolio and practice my skills with the
+        tools i use.
       </p>
       <IconsTools>
         <i class="fa-brands fa-react"></i>

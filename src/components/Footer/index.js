@@ -13,16 +13,32 @@ const Footer = () => {
         </p>
       </Contact>
       <SocialMidia>
-        <a href="google.com">
+        <a
+          href="https://www.linkedin.com/in/kaio-alves-lopes-3a1057245/"
+          target="_blank"
+          rel="noreferrer"
+        >
           <i class="fa-brands fa-linkedin-in"></i>
         </a>
-        <a href="google.com">
+        <a
+          href="https://www.instagram.com/kaio_al1/"
+          target="_blank"
+          rel="noreferrer"
+        >
           <i class="fa-brands fa-instagram"></i>
         </a>
-        <a href="google.com">
+        <a
+          href="https://www.facebook.com/kaio.alveslopes/"
+          target="_blank"
+          rel="noreferrer"
+        >
           <i class="fa-brands fa-facebook-f"></i>
         </a>
-        <a href="google.com">
+        <a
+          href="https://github.com/KaiooLopes"
+          target="_blank"
+          rel="noreferrer"
+        >
           <i class="fa-brands fa-github-alt"></i>
         </a>
       </SocialMidia>
