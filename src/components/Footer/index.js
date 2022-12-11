@@ -5,11 +5,11 @@ const Footer = () => {
     <ContainerFooter>
       <Contact>
         <p>
-          <i class="fa-regular fa-envelope"></i> kaio.loopes18@gmail.com
+          <i className="fa-regular fa-envelope"></i> kaio.loopes18@gmail.com
         </p>
 
         <p>
-          <i class="fa-solid fa-phone"></i> (51) 9 8653-7075
+          <i className="fa-solid fa-phone"></i> (51) 9 8653-7075
         </p>
       </Contact>
       <SocialMidia>
@@ -18,28 +18,28 @@ const Footer = () => {
           target="_blank"
           rel="noreferrer"
         >
-          <i class="fa-brands fa-linkedin-in"></i>
+          <i className="fa-brands fa-linkedin-in"></i>
         </a>
         <a
           href="https://www.instagram.com/kaio_al1/"
           target="_blank"
           rel="noreferrer"
         >
-          <i class="fa-brands fa-instagram"></i>
+          <i className="fa-brands fa-instagram"></i>
         </a>
         <a
           href="https://www.facebook.com/kaio.alveslopes/"
           target="_blank"
           rel="noreferrer"
         >
-          <i class="fa-brands fa-facebook-f"></i>
+          <i className="fa-brands fa-facebook-f"></i>
         </a>
         <a
           href="https://github.com/KaiooLopes"
           target="_blank"
           rel="noreferrer"
         >
-          <i class="fa-brands fa-github-alt"></i>
+          <i className="fa-brands fa-github-alt"></i>
         </a>
       </SocialMidia>
     </ContainerFooter>

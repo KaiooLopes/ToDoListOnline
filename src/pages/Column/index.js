@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 import ButtonBack from "../../components/ButtonBack";
+import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 
 const Column = () => {
   const id = useParams();
@@ -27,8 +28,12 @@ const Column = () => {
   const [creating, setCreating] = useState(false);
   const [confirmRemove, setConfirmRemove] = useState(false);
   const { document } = useFetchDocument("columns", id.id);
+  const { documents: cards } = useFetchDocuments(`columns/${id.id}/cards`);
   const { insertDocument } = useInsertDocuments(`columns/${id.id}/cards`);
   const { deleteDocument } = useDeleteDocument(`columns`);
+  const { deleteDocument: deleteCard } = useDeleteDocument(
+    `columns/${id.id}/cards`
+  );
 
   const [titleToDo, setTitleToDo] = useState("");
   const [date, setDate] = useState("");
@@ -57,6 +62,9 @@ const Column = () => {
 
   const removeColumn = async (e) => {
     e.preventDefault();
+    await cards.forEach((card) => {
+      deleteCard(card.id);
+    });
     await deleteDocument(id.id);
     navigate("/");
   };
