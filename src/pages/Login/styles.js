@@ -19,10 +19,11 @@ export const SignInOrLogin = styled.p`
 
 export const ContainerLogin = styled.div`
   display: flex;
+  margin: 0 auto;
   width: 70%;
-  margin: 100px auto 0;
   justify-content: center;
   align-items: center;
+  min-height: 80vh;
   text-align: center;
   flex-direction: column;
   border-radius: 10px;

@@ -10,13 +10,12 @@ export const ContainerFooter = styled.div`
   color: white;
   background-color: #2d2d2d;
   width: 100%;
-  position: fixed;
   row-gap: 10px;
   padding: 10px 0;
-  bottom: 0;
-  left: 0;
 
   @media (min-width: ${desktop}px) {
+    position: fixed;
+    bottom: 0;
     padding: 18px 0;
     width: 70%;
     left: 15%;
@@ -28,14 +27,12 @@ export const ContainerFooter = styled.div`
 export const Contact = styled.div`
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 100%;
   justify-content: space-between;
+  align-items: center;
 
   p {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     i {
       font-size: 20px;
       margin-right: 10px;
