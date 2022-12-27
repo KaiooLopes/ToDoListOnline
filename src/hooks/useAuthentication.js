@@ -71,7 +71,7 @@ export const useAuthentication = () => {
     signOut(auth).then(() => {
       setLoading(false);
       console.log(window.location.href);
-      window.location.href = `${window.location.href}login`;
+      window.location.href = `${window.location.href}`;
     });
   };
 
