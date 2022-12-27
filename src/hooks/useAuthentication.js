@@ -70,7 +70,8 @@ export const useAuthentication = () => {
 
     signOut(auth).then(() => {
       setLoading(false);
-      window.location.href = "login";
+      console.log(window.location.href);
+      window.location.href = `${window.location.href}login`;
     });
   };
 
