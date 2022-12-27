@@ -8,7 +8,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const ref = useRef(null);
   const { user } = useAuthValue();
-  const { logout } = useAuthentication();
+  const { logout, loading } = useAuthentication();
 
   useEffect(() => {
     window.addEventListener("resize", () => {
@@ -57,14 +57,15 @@ const Navbar = () => {
         {user && (
           <li>
             <button
-              onClick={() => {
-                logout();
+              onClick={async () => {
+                await logout();
               }}
             >
               Logout
             </button>
           </li>
         )}
+        {loading && <li>saindi</li>}
       </Nav>
     </ContainerNavbar>
   );

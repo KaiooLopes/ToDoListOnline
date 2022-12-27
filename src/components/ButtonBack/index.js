@@ -5,7 +5,7 @@ const ButtonBack = () => {
   return (
     <ButtonBackDiv>
       <Link to="/">
-        <i class="fa-solid fa-chevron-left"></i>Back
+        <i className="fa-solid fa-chevron-left"></i>Back
       </Link>
     </ButtonBackDiv>
   );

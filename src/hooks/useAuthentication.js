@@ -68,7 +68,10 @@ export const useAuthentication = () => {
     checkIfIsCancelled();
     setLoading(true);
 
-    signOut(auth);
+    signOut(auth).then(() => {
+      setLoading(false);
+      window.location.href = "login";
+    });
   };
 
   const signIn = async (data) => {
