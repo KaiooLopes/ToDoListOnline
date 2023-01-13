@@ -61,7 +61,10 @@ function App() {
         <BrowserRouter>
           <Navbar />
           <Routes>
-            <Route path="/" element={user ? <Home /> : <Login />} />
+            <Route
+              path="/"
+              element={user ? <Home /> : <Navigate to="/login" />}
+            />
             <Route
               path="/login"
               element={!user ? <Login /> : <Navigate to="/" />}
@@ -73,11 +76,11 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route
               path="/card/create"
-              element={user ? <CreateColumn /> : <Navigate to="/" />}
+              element={user ? <CreateColumn /> : <Navigate to="/login" />}
             />
             <Route
               path="/card/:id"
-              element={user ? <Column /> : <Navigate to="/" />}
+              element={user ? <Column /> : <Navigate to="/login" />}
             />
           </Routes>
           <Footer />

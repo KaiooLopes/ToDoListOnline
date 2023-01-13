@@ -56,16 +56,10 @@ const Navbar = () => {
         </li>
         {user && (
           <li>
-            <button
-              onClick={async () => {
-                await logout();
-              }}
-            >
-              Logout
-            </button>
+            <button onClick={logout}>Logout</button>
           </li>
         )}
-        {loading && <li>saindi</li>}
+        {loading && <li>saindo</li>}
       </Nav>
     </ContainerNavbar>
   );
