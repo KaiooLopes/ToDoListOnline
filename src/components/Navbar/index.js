@@ -56,7 +56,9 @@ const Navbar = () => {
         </li>
         {user && (
           <li>
-            <button onClick={logout}>Logout</button>
+            <NavLink to="login" onClick={logout}>
+              Logout
+            </NavLink>
           </li>
         )}
         {loading && <li>saindo</li>}
