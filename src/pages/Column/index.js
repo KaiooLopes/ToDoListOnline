@@ -34,11 +34,7 @@ const Column = () => {
     loading: loading2,
     error2,
   } = useFetchDocument("columns", id.id);
-  const {
-    documents: cards,
-    loading,
-    error,
-  } = useFetchDocuments(`columns/${id.id}/cards`);
+  const { documents: cards } = useFetchDocuments(`columns/${id.id}/cards`);
   const { insertDocument } = useInsertDocuments(`columns/${id.id}/cards`);
   const { deleteDocument } = useDeleteDocument(`columns`);
   const { deleteDocument: deleteCard } = useDeleteDocument(
@@ -184,7 +180,7 @@ const Column = () => {
         </CardContent>
       </CreatingToDo>
 
-      <Loading>{(loading || loading2) && <p>Loading...</p>}</Loading>
+      <Loading>{loading2 && <p>Loading...</p>}</Loading>
 
       {(error || error2) && (
         <Error>
