@@ -6,7 +6,7 @@ export const ContainerFooter = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   color: white;
   background-color: #2d2d2d;
   width: 100%;
@@ -14,12 +14,7 @@ export const ContainerFooter = styled.div`
   padding: 10px 0;
 
   @media (min-width: ${desktop}px) {
-    position: fixed;
-    bottom: 0;
-    padding: 18px 0;
-    width: 70%;
-    left: 15%;
-    right: 15%;
+    padding: 18px 20px;
     flex-direction: row;
   }
 `;

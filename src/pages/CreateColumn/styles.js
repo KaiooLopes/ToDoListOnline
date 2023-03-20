@@ -25,6 +25,15 @@ export const ColumnForm = styled.div`
     }
   }
 
+  div:nth-child(3) {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+
+    p {
+      color: white;
+    }
+  }
   div {
     display: flex;
     justify-content: space-evenly;
@@ -89,5 +98,12 @@ export const Color = styled.span`
 
   &:hover {
     transform: scale(1.2);
+  }
+`;
+
+export const Loading = styled.div`
+  text-align: center;
+  p {
+    color: white;
   }
 `;

@@ -11,14 +11,13 @@ import {
 export const useFetchDocuments = (doc, uid = null) => {
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const [cancelled, setCancelled] = useState(false);
 
   useEffect(() => {
     const loadData = async () => {
       if (cancelled) return;
-
       setLoading(true);
 
       const collectionRef = await collection(db, doc);
@@ -43,7 +42,6 @@ export const useFetchDocuments = (doc, uid = null) => {
             }))
           );
         });
-
         setLoading(false);
       } catch (error) {
         console.log(error);

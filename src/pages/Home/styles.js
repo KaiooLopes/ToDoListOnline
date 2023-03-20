@@ -65,3 +65,9 @@ export const Buttons = styled.div`
     background-color: rgb(0, 0, 0);
   }
 `;
+
+export const Loading = styled.div`
+  p {
+    color: white;
+  }
+`;

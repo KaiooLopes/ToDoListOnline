@@ -4,6 +4,7 @@ import {
   Date,
   CardHeader,
   CardBody,
+  Loading,
   Completed,
   TitleAndCheck,
 } from "./styles";
@@ -11,6 +12,7 @@ import {
 //HOOKS
 import { useUpdateDocument } from "../../hooks/useUpdateDocument";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
+import { useState } from "react";
 
 function Cards({
   home,
@@ -26,8 +28,11 @@ function Cards({
 }) {
   const { updateDocument } = useUpdateDocument(`columns/${columnIndex}/cards`);
   const { deleteDocument } = useDeleteDocument(`columns/${columnIndex}/cards`);
+  const [loadingg, setLoading] = useState(false);
+  const [loadingDelete, setLoadingDelete] = useState(false);
 
-  const handleProgress = (progress) => {
+  const handleProgress = async (progress) => {
+    setLoading(true);
     if (home) {
       return;
     }
@@ -40,7 +45,7 @@ function Cards({
       statusCard = "dont started";
     }
 
-    updateDocument(id, {
+    await updateDocument(id, {
       bodyCard: body,
       createdAt,
       date,
@@ -48,18 +53,27 @@ function Cards({
       titleCard: cardTitle,
       progress: statusCard,
     });
+    setLoading(false);
+  };
+
+  const handleDelete = async (id) => {
+    setLoadingDelete(true);
+
+    await deleteDocument(id);
+
+    setLoadingDelete(false);
   };
 
   return (
     <Card>
       <CardHeader>
         <TitleAndCheck>
-          <Completed progress={progress}>
+          <Completed progress={progress} loadingg={loadingg}>
             <div onClick={() => handleProgress(progress)}></div>
           </Completed>
           <h3>{cardTitle}</h3>
         </TitleAndCheck>
-        {!home && <button onClick={() => deleteDocument(id)}>X</button>}
+        {!home && <button onClick={() => handleDelete(id)}>X</button>}
       </CardHeader>
       <CardBody color={color}>
         <p>{body}</p>
@@ -68,6 +82,7 @@ function Cards({
         <p>{date}</p>
         <p>{hour}</p>
       </Date>
+      <Loading>{loadingDelete && <p>Loading...</p>}</Loading>
     </Card>
   );
 }

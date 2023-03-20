@@ -10,6 +10,8 @@ import {
   Date,
   CreateCard,
   DivColumn,
+  Loading,
+  Error,
   RemoveCard,
   ConfirmRemove,
   ConfirmText,
@@ -27,8 +29,16 @@ const Column = () => {
   const navigate = useNavigate();
   const [creating, setCreating] = useState(false);
   const [confirmRemove, setConfirmRemove] = useState(false);
-  const { document } = useFetchDocument("columns", id.id);
-  const { documents: cards } = useFetchDocuments(`columns/${id.id}/cards`);
+  const {
+    document,
+    loading: loading2,
+    error2,
+  } = useFetchDocument("columns", id.id);
+  const {
+    documents: cards,
+    loading,
+    error,
+  } = useFetchDocuments(`columns/${id.id}/cards`);
   const { insertDocument } = useInsertDocuments(`columns/${id.id}/cards`);
   const { deleteDocument } = useDeleteDocument(`columns`);
   const { deleteDocument: deleteCard } = useDeleteDocument(
@@ -39,6 +49,10 @@ const Column = () => {
   const [date, setDate] = useState("");
   const [toDoBody, setToDoBody] = useState("");
   const [hour, setHour] = useState("");
+  const [error1, setError0] = useState(error2);
+  const [error0, setError1] = useState(error);
+  const [loadingRemove, setLoadingRemove] = useState(false);
+  const [loadingAdd, setLoadingAdd] = useState(false);
 
   const reset = () => {
     setTitleToDo("");
@@ -48,6 +62,7 @@ const Column = () => {
   };
 
   const handleSubmit = async (e) => {
+    setLoadingAdd(true);
     e.preventDefault();
     await insertDocument({
       date,
@@ -57,15 +72,18 @@ const Column = () => {
       titleCard: titleToDo,
     });
     setCreating(false);
+    setLoadingAdd(false);
     reset();
   };
 
   const removeColumn = async (e) => {
+    setLoadingRemove(true);
     e.preventDefault();
     await cards.forEach((card) => {
       deleteCard(card.id);
     });
     await deleteDocument(id.id);
+    setLoadingRemove(false);
     navigate("/");
   };
 
@@ -101,6 +119,7 @@ const Column = () => {
           <button onClick={(e) => removeColumn(e)}>Yes</button>
           <button onClick={() => setConfirmRemove(false)}>No</button>
         </Btns>
+        <Loading>{loadingRemove && <p>Loading...</p>}</Loading>
       </ConfirmRemove>
       {document && (
         <DivColumn>
@@ -161,8 +180,25 @@ const Column = () => {
               Cancel
             </button>
           </CreateCard>
+          <Loading>{loadingAdd && <p>Loading...</p>}</Loading>
         </CardContent>
       </CreatingToDo>
+      {(loading || loading2) && (
+        <Loading>
+          <p>Loading...</p>
+        </Loading>
+      )}
+      {(error || error2) && (
+        <Error>
+          <p>{error0.msg || error1.msg}</p>
+          <button
+            onClick={() => {
+              setError0(false);
+              setError1(false);
+            }}
+          ></button>
+        </Error>
+      )}
     </ColumnContainer>
   );
 };

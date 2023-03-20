@@ -1,4 +1,10 @@
-import { Color, ColumnForm, Colors, CreateColumnContainer } from "./styles";
+import {
+  Color,
+  ColumnForm,
+  Loading,
+  Colors,
+  CreateColumnContainer,
+} from "./styles";
 
 import { useState } from "react";
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
@@ -9,6 +15,7 @@ import ButtonBack from "../../components/ButtonBack";
 const CreateColumn = () => {
   const { user } = useAuthValue();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const { insertDocument } = useInsertDocuments("columns");
 
   const handleColor = (e) => {
@@ -17,16 +24,19 @@ const CreateColumn = () => {
   };
 
   const handleSubmit = async (e) => {
+    setLoading(true);
     e.preventDefault();
     if (!color) {
       return;
     }
+
     await insertDocument({
       nameColumn,
       uid: user.uid,
       createdBy: user.displayName,
       color,
     });
+    setLoading(false);
 
     navigate("/");
   };
@@ -79,6 +89,7 @@ const CreateColumn = () => {
           </label>
           <div>
             <button>Create</button>
+            <Loading>{loading && <p>Loading...</p>}</Loading>
           </div>
         </form>
       </ColumnForm>

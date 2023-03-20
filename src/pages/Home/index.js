@@ -1,5 +1,11 @@
 //STYLES
-import { ContainerHome, HomeColumns, Buttons, DivClick } from "./styles";
+import {
+  ContainerHome,
+  Loading,
+  HomeColumns,
+  Buttons,
+  DivClick,
+} from "./styles";
 
 //CONTEXT
 import { useAuthValue } from "../../context/AuthContext";
@@ -14,11 +20,16 @@ import { useNavigate } from "react-router-dom";
 const Home = () => {
   const { user } = useAuthValue();
   const navigate = useNavigate();
-  const { documents: columns } = useFetchDocuments("columns", user.uid);
+  const { documents: columns, loading } = useFetchDocuments(
+    "columns",
+    user.uid
+  );
 
   const handleCreate = () => {
     navigate("/card/create");
   };
+
+  console.log(loading);
 
   return (
     <ContainerHome>
@@ -41,6 +52,11 @@ const Home = () => {
               </DivClick>
             );
           })}
+        {(loading || !columns) && (
+          <Loading>
+            <p>Loading...</p>
+          </Loading>
+        )}
       </HomeColumns>
     </ContainerHome>
   );
