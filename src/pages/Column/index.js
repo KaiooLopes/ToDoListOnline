@@ -183,11 +183,9 @@ const Column = () => {
           <Loading>{loadingAdd && <p>Loading...</p>}</Loading>
         </CardContent>
       </CreatingToDo>
-      {(loading || loading2) && (
-        <Loading>
-          <p>Loading...</p>
-        </Loading>
-      )}
+
+      <Loading>{(loading || loading2) && <p>Loading...</p>}</Loading>
+
       {(error || error2) && (
         <Error>
           <p>{error0.msg || error1.msg}</p>

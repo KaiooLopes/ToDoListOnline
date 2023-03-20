@@ -52,11 +52,8 @@ const Home = () => {
               </DivClick>
             );
           })}
-        {(loading || !columns) && (
-          <Loading>
-            <p>Loading...</p>
-          </Loading>
-        )}
+
+        <Loading>{!columns && <p>Loading...</p>}</Loading>
       </HomeColumns>
     </ContainerHome>
   );
