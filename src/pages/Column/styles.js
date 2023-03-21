@@ -318,6 +318,3 @@ export const Loading = styled.div`
     color: white;
   }
 `;
-export const Error = styled.div`
-  color: red;
-`;

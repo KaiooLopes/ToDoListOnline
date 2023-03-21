@@ -11,7 +11,6 @@ import {
   CreateCard,
   DivColumn,
   Loading,
-  Error,
   RemoveCard,
   ConfirmRemove,
   ConfirmText,
@@ -29,11 +28,7 @@ const Column = () => {
   const navigate = useNavigate();
   const [creating, setCreating] = useState(false);
   const [confirmRemove, setConfirmRemove] = useState(false);
-  const {
-    document,
-    loading: loading2,
-    error2,
-  } = useFetchDocument("columns", id.id);
+  const { document } = useFetchDocument("columns", id.id);
   const { documents: cards } = useFetchDocuments(`columns/${id.id}/cards`);
   const { insertDocument } = useInsertDocuments(`columns/${id.id}/cards`);
   const { deleteDocument } = useDeleteDocument(`columns`);
@@ -45,8 +40,6 @@ const Column = () => {
   const [date, setDate] = useState("");
   const [toDoBody, setToDoBody] = useState("");
   const [hour, setHour] = useState("");
-  const [error1, setError0] = useState(error2);
-  const [error0, setError1] = useState(error);
   const [loadingRemove, setLoadingRemove] = useState(false);
   const [loadingAdd, setLoadingAdd] = useState(false);
 
@@ -180,19 +173,7 @@ const Column = () => {
         </CardContent>
       </CreatingToDo>
 
-      <Loading>{loading2 && <p>Loading...</p>}</Loading>
-
-      {(error || error2) && (
-        <Error>
-          <p>{error0.msg || error1.msg}</p>
-          <button
-            onClick={() => {
-              setError0(false);
-              setError1(false);
-            }}
-          ></button>
-        </Error>
-      )}
+      <Loading>{!document && <p>Loading...</p>}</Loading>
     </ColumnContainer>
   );
 };
