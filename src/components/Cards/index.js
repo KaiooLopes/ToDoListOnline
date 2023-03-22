@@ -4,7 +4,6 @@ import {
   Date,
   CardHeader,
   CardBody,
-  Loading,
   Completed,
   TitleAndCheck,
 } from "./styles";
@@ -13,6 +12,7 @@ import {
 import { useUpdateDocument } from "../../hooks/useUpdateDocument";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 import { useState } from "react";
+import Loading from "../../components/Loading";
 
 function Cards({
   home,
@@ -64,12 +64,22 @@ function Cards({
     setLoadingDelete(false);
   };
 
+  if (loadingDelete) {
+    return <Loading />;
+  }
+
   return (
     <Card>
       <CardHeader>
         <TitleAndCheck>
           <Completed progress={progress} loadingg={loadingg}>
-            <div onClick={() => handleProgress(progress)}></div>
+            <div
+              onClick={() => {
+                if (!loadingg) {
+                  return handleProgress(progress);
+                }
+              }}
+            ></div>
           </Completed>
           <h3>{cardTitle}</h3>
         </TitleAndCheck>
@@ -82,7 +92,6 @@ function Cards({
         <p>{date}</p>
         <p>{hour}</p>
       </Date>
-      <Loading>{loadingDelete && <p>Loading...</p>}</Loading>
     </Card>
   );
 }

@@ -1,16 +1,11 @@
-import {
-  Color,
-  ColumnForm,
-  Loading,
-  Colors,
-  CreateColumnContainer,
-} from "./styles";
+import { Color, ColumnForm, Colors, CreateColumnContainer } from "./styles";
 
 import { useState } from "react";
 import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 import { useAuthValue } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import ButtonBack from "../../components/ButtonBack";
+import Loading from "../../components/Loading";
 
 const CreateColumn = () => {
   const { user } = useAuthValue();
@@ -44,6 +39,10 @@ const CreateColumn = () => {
   const [idColor, setIdColor] = useState(null);
   const [nameColumn, setNameColumn] = useState("");
   const [color, setColor] = useState("");
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <CreateColumnContainer>
@@ -89,7 +88,6 @@ const CreateColumn = () => {
           </label>
           <div>
             <button>Create</button>
-            <Loading>{loading && <p>Loading...</p>}</Loading>
           </div>
         </form>
       </ColumnForm>

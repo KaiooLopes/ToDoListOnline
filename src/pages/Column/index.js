@@ -10,7 +10,6 @@ import {
   Date,
   CreateCard,
   DivColumn,
-  Loading,
   RemoveCard,
   ConfirmRemove,
   ConfirmText,
@@ -22,6 +21,7 @@ import { useInsertDocuments } from "../../hooks/useInsertDocuments";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
 import ButtonBack from "../../components/ButtonBack";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
+import Loading from "../../components/Loading/";
 
 const Column = () => {
   const id = useParams();
@@ -75,6 +75,10 @@ const Column = () => {
     setLoadingRemove(false);
     navigate("/");
   };
+
+  if (loadingAdd || !document) {
+    return <Loading />;
+  }
 
   return (
     <ColumnContainer>
@@ -169,11 +173,8 @@ const Column = () => {
               Cancel
             </button>
           </CreateCard>
-          <Loading>{loadingAdd && <p>Loading...</p>}</Loading>
         </CardContent>
       </CreatingToDo>
-
-      <Loading>{!document && <p>Loading...</p>}</Loading>
     </ColumnContainer>
   );
 };
