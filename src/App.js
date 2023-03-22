@@ -14,7 +14,6 @@ import Footer from "./components/Footer";
 
 import CreateColumn from "./pages/CreateColumn";
 import Column from "./pages/Column";
-import Loading from "./components/Loading";
 
 function App() {
   const [user, setUser] = useState(undefined);

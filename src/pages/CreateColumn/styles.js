@@ -100,10 +100,3 @@ export const Color = styled.span`
     transform: scale(1.2);
   }
 `;
-
-export const Loading = styled.div`
-  text-align: center;
-  p {
-    color: white;
-  }
-`;

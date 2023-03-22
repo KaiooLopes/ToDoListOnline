@@ -92,7 +92,3 @@ export const CardBody = styled.div`
     word-wrap: break-word;
   }
 `;
-
-export const Loading = styled.div`
-  text-align: center;
-`;

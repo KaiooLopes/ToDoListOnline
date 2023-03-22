@@ -310,11 +310,3 @@ export const CreateCard = styled.div`
     color: #eb3f3f;
   }
 `;
-
-export const Loading = styled.div`
-  margin: 5px 0;
-  text-align: center;
-  p {
-    color: white;
-  }
-`;
