@@ -65,12 +65,14 @@ const Column = () => {
     reset();
   };
 
+  console.log(loadingRemove);
+
   const removeColumn = async (e) => {
-    setLoadingRemove(true);
     e.preventDefault();
-    await cards.forEach((card) => {
+    cards.forEach((card) => {
       deleteCard(card.id);
     });
+    setLoadingRemove(true);
     await deleteDocument(id.id);
     setLoadingRemove(false);
     navigate("/");
@@ -112,7 +114,11 @@ const Column = () => {
           <button onClick={(e) => removeColumn(e)}>Yes</button>
           <button onClick={() => setConfirmRemove(false)}>No</button>
         </Btns>
-        <Loading>{loadingRemove && <p>Loading...</p>}</Loading>
+        {loadingRemove && (
+          <Loading>
+            <p>Loading...</p>
+          </Loading>
+        )}
       </ConfirmRemove>
       {document && (
         <DivColumn>
