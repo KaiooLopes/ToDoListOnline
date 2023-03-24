@@ -28,7 +28,6 @@ function Columns({ children, color, idColumn, home = null }) {
           hour={documents[0].hour}
           body={documents[0].bodyCard}
           cardTitle={documents[0].titleCard}
-          progress={documents[0].progress}
           columnIndex={idColumn}
           createdAt={documents[0].createdAt}
         />
@@ -46,7 +45,6 @@ function Columns({ children, color, idColumn, home = null }) {
               hour={card.hour}
               body={card.bodyCard}
               cardTitle={card.titleCard}
-              progress={card.progress}
               columnIndex={idColumn}
               createdAt={card.createdAt}
             />

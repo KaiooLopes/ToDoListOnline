@@ -48,40 +48,6 @@ export const Date = styled.div`
   font-size: 15px;
 `;
 
-export const Completed = styled.div`
-  div {
-    @keyframes rotate {
-      to {
-        transform: rotate(0deg);
-      }
-      from {
-        transform: rotate(360deg);
-      }
-    }
-    ${(props) => {
-      let color;
-      if (props.progress === "dont started" && !props.loading) {
-        color = "background-color:red;";
-      } else if (props.progress === "in progress" && !props.loading) {
-        color = "background-color:yellow;";
-      } else if (props.progress === "finished" && !props.loading) {
-        color = "background-color:green;";
-      }
-      if (props.loadingg) {
-        color =
-          "background: rgb(68,68,68);background: linear-gradient(0deg, rgba(68,68,68,1) 31%, rgba(102,102,102,1) 64%, rgba(136,136,136,1) 82%);animation: rotate 1s;";
-      }
-
-      return color;
-    }};
-
-    height: 15px;
-    width: 15px;
-    border: 1px solid black;
-    border-radius: 100px;
-  }
-`;
-
 export const CardBody = styled.div`
   padding: 5px;
   color: white;

@@ -55,7 +55,6 @@ const Column = () => {
     e.preventDefault();
     await insertDocument({
       date,
-      progress: "dont started",
       hour,
       bodyCard: toDoBody,
       titleCard: titleToDo,
